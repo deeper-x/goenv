@@ -83,7 +83,7 @@ if err != nil {
 }
 
 v, err = efo.Get("NON_EXISTING")
-if err == nil {
+if err != nil {
     panic("handle error on non-existing key fetched")
 }
 ```
