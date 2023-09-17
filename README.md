@@ -6,7 +6,7 @@ Usage:
 
 Step 1 - Install:
 ```sh
-go get -v github.com/deeper-x/golang-dot-env@latest
+go get -v github.com/deeper-x/goenv@latest
 ```
 
 Step 2 - Create an .env:
@@ -21,13 +21,12 @@ package main
 
 import (
 	"fmt"
-
-	gde "github.com/deeper-x/golang-dot-env"
+	"github.com/deeper-x/goenv"
 )
 
 
 func main() {
-	cfo, err := gde.New()
+	cfo, err := goenv.New()
 	if err != nil {
 		panic(err)
 	}
@@ -58,7 +57,7 @@ go test -v ./...
 
 Step 1: build file object
 ```golang
-efo, err := New() // <-- access default .env file in current dir
+efo, err := goenv.New() // <-- access default .env file in current dir
 // efo, err := New("/path/to/other/file/.env") <-- Or pass a custom path
 if err != nil {
 	panic(err)
@@ -77,7 +76,7 @@ fmt.Println(v) // <-- access environment value
 
 PLEASE NOTE: Accessing non existing variables raises an error!
 ```golang
-efo, err := New()
+efo, err := goenv.New()
 if err != nil {
     panic(err)
 }
