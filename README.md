@@ -21,7 +21,7 @@ if err == nil {
 fmt.Println(v) // <-- access environment value
 ```
 
-Accessing non existing variables
+Accessing non existing variables raises an error...
 ```golang
 efo, err := New()
 if err != nil {
