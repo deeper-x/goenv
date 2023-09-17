@@ -4,4 +4,4 @@ package settings
 const DefaultFile = ".env"
 
 // RegexRow expected row format
-const RegexRow = `[a-zA-Z0-9\-\_]+\=[a-zA-Z0-9\-\_]+`
+const RegexRow = `[a-zA-Z0-9\-\_]+[\=]{1}[a-zA-Z0-9\-\_]+`

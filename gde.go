@@ -59,17 +59,15 @@ func (ef *EnvFile) Get(k string) (string, error) {
 	return v, nil
 }
 
-func checkRowsFormat(values []string) (bool, error) {
+func checkRowFormat(record string) (bool, error) {
 	res := false
 	rxp, err := regexp.Compile(settings.RegexRow)
 	if err != nil {
 		return res, err
 	}
 
-	for i := range values {
-		if !rxp.MatchString(values[i]) {
-			return res, nil
-		}
+	if !rxp.MatchString(record) {
+		return res, nil
 	}
 
 	res = true
@@ -112,12 +110,20 @@ func buildKV(values []string) (map[string]string, error) {
 	res := map[string]string{}
 
 	for i := range values {
-		cursl := strings.Split(values[i], "=")
+		ok, err := checkRowFormat(values[i])
+		if err != nil {
+			return res, err
+		}
 
-		k := cursl[0]
-		v := cursl[1]
+		if ok {
+			cursl := strings.Split(values[i], "=")
 
-		res[k] = v
+			k := cursl[0]
+			v := cursl[1]
+
+			res[k] = v
+		}
+
 	}
 
 	return res, nil

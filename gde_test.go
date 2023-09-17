@@ -76,31 +76,37 @@ func TestCheckRowsFormatOK(t *testing.T) {
 		"baz-2=3",
 	}
 
-	ok, err := checkRowsFormat(rows)
-	if err != nil {
-		t.Error(err)
+	for i := range rows {
+		ok, err := checkRowFormat(rows[i])
+		if err != nil {
+			t.Error(err)
+		}
+
+		if !ok {
+			t.Error("input entries are expected to be format compliant")
+		}
 	}
 
-	if !ok {
-		t.Error("input entries are expected to be format compliant")
-	}
 }
 
 func TestCheckRowsFormatKO(t *testing.T) {
 	rows := []string{
-		"doo=1",
+		"doo*1",
 		"wrong_record",
-		"baz=2",
+		"baz 2",
 	}
 
-	ok, err := checkRowsFormat(rows)
-	if err != nil {
-		t.Error(err)
+	for _, v := range rows {
+		ok, err := checkRowFormat(v)
+		if err != nil {
+			t.Error(err)
+		}
+
+		if ok {
+			t.Errorf("input entry %s is expected not to be format compliant", v)
+		}
 	}
 
-	if ok {
-		t.Error("input entries are expected not to be format compliant")
-	}
 }
 
 func TestGetKO(t *testing.T) {
