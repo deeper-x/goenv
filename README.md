@@ -15,7 +15,7 @@ Step 2: access .env parameters
 ```golang
 v, err = efo.Get("USERNAME")
 if err == nil {
-	panic("...handle error...")
+    panic("...handle error...")
 }
 
 fmt.Println(v) // <-- access environment value
