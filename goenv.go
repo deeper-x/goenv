@@ -7,7 +7,7 @@ import (
 	"regexp"
 	"strings"
 
-	"github.com/deeper-x/golang-dot-env/settings"
+	"github.com/deeper-x/goenv/settings"
 )
 
 // EnvFile object representing .env file
