@@ -5,7 +5,7 @@ import (
 )
 
 func TestFileContent(t *testing.T) {
-	got, err := FileContent()
+	got, err := FileContent("./assets/.env")
 	if err != nil {
 		t.Error(err)
 	}
@@ -29,7 +29,7 @@ func TestEmptyInputParam(t *testing.T) {
 }
 
 func TestNonEmptyInputParam(t *testing.T) {
-	_, err := New(".env")
+	_, err := New("./assets/.env")
 	if err != nil {
 		t.Error(err)
 	}
