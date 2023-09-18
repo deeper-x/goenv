@@ -4,8 +4,8 @@ import (
 	"testing"
 )
 
-func TestReadEnvFile(t *testing.T) {
-	got, err := readEnvFile()
+func TestFileContent(t *testing.T) {
+	got, err := FileContent()
 	if err != nil {
 		t.Error(err)
 	}

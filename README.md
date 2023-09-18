@@ -55,7 +55,7 @@ go test -v ./...
 
 ### Explanation:
 
-Step 1: build file object
+Build file object:
 ```golang
 efo, err := goenv.New() // <-- access default .env file in current dir
 // efo, err := New("/path/to/other/file/.env") <-- Or pass a custom path
@@ -63,8 +63,17 @@ if err != nil {
 	panic(err)
 }
 ```
+Inspect file content:
+```golang
+fc, err := FileContent()
+if err != nil {
+	panic(err)
+}
 
-Step 2: access .env parameters
+fmt.Println(fc)
+```
+
+Access .env parameters:
 ```golang
 v, err = efo.Get("USERNAME")
 if err == nil {
@@ -73,6 +82,8 @@ if err == nil {
 
 fmt.Println(v) // <-- access environment value
 ```
+
+
 
 PLEASE NOTE: Accessing non existing variables raises an error!
 ```golang
