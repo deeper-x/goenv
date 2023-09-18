@@ -32,7 +32,7 @@ func New(fpath ...string) (EnvFile, error) {
 	}
 
 	// 1. create Env File Content
-	efc, err := readEnvFile(dotEnvFile)
+	efc, err := FileContent(dotEnvFile)
 	if err != nil {
 		return res, err
 	}
@@ -59,23 +59,8 @@ func (ef *EnvFile) Get(k string) (string, error) {
 	return v, nil
 }
 
-func checkRowFormat(record string) (bool, error) {
-	res := false
-	rxp, err := regexp.Compile(settings.RegexRow)
-	if err != nil {
-		return res, err
-	}
-
-	if !rxp.MatchString(record) {
-		return res, nil
-	}
-
-	res = true
-	return res, nil
-}
-
-// readEnvFile read .env content
-func readEnvFile(fpath ...string) ([]string, error) {
+// FileContent read .env content
+func FileContent(fpath ...string) ([]string, error) {
 	dotEnvFile := settings.DefaultFile
 	res := []string{}
 
@@ -102,6 +87,21 @@ func readEnvFile(fpath ...string) ([]string, error) {
 		res = append(res, fscanner.Text())
 	}
 
+	return res, nil
+}
+
+func checkRowFormat(record string) (bool, error) {
+	res := false
+	rxp, err := regexp.Compile(settings.RegexRow)
+	if err != nil {
+		return res, err
+	}
+
+	if !rxp.MatchString(record) {
+		return res, nil
+	}
+
+	res = true
 	return res, nil
 }
 
