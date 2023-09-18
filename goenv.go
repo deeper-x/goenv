@@ -32,7 +32,7 @@ func New(fpath ...string) (EnvFile, error) {
 	}
 
 	// 1. create Env File Content
-	efc, err := FileContent(dotEnvFile)
+	efc, err := FileDump(dotEnvFile)
 	if err != nil {
 		return res, err
 	}
@@ -59,8 +59,8 @@ func (ef *EnvFile) Get(k string) (string, error) {
 	return v, nil
 }
 
-// FileContent read .env content
-func FileContent(fpath ...string) ([]string, error) {
+// FileDump read .env content
+func FileDump(fpath ...string) ([]string, error) {
 	dotEnvFile := settings.DefaultFile
 	res := []string{}
 

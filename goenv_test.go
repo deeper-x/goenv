@@ -4,8 +4,8 @@ import (
 	"testing"
 )
 
-func TestFileContent(t *testing.T) {
-	got, err := FileContent("./assets/.env")
+func TestFileDump(t *testing.T) {
+	got, err := FileDump("./assets/.env")
 	if err != nil {
 		t.Error(err)
 	}

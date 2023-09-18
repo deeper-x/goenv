@@ -57,15 +57,14 @@ go test -v ./...
 
 Build file object:
 ```golang
-efo, err := goenv.New() // <-- access default .env file in current dir
-// efo, err := New("/path/to/other/file/.env") <-- Or pass a custom path
+efo, err := goenv.New() // <-- access default .env file in current dir, or New("./assets/.env") for custom file path
 if err != nil {
 	panic(err)
 }
 ```
 Inspect file content:
 ```golang
-fc, err := FileContent()
+fc, err := FileDump()
 if err != nil {
 	panic(err)
 }
