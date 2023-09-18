@@ -53,7 +53,7 @@ Test:
 go test -v ./...
 ```
 
-### Explanation:
+### Details
 
 Build file object:
 ```golang
