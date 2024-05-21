@@ -1,4 +1,4 @@
-package gde
+package goenv
 
 import (
 	"bufio"

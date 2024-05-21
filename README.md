@@ -21,12 +21,12 @@ package main
 
 import (
 	"fmt"
-	gde "github.com/deeper-x/goenv"
+	"github.com/deeper-x/goenv"
 )
 
 
 func main() {
-	cfo, err := gde.New(".env")
+	cfo, err := goenv.New(".env")
 	if err != nil {
 		panic(err)
 	}
@@ -57,7 +57,7 @@ go test -v ./...
 
 Build file object:
 ```golang
-efo, err := gde.New() // <-- access default .env file in current dir, or New("./assets/.env") for custom file path
+efo, err := goenv.New() // <-- access default .env file in current dir, or New("./assets/.env") for custom file path
 if err != nil {
 	panic(err)
 }
