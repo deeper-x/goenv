@@ -74,6 +74,8 @@ func TestCheckRowsFormatOK(t *testing.T) {
 		"foo=1",
 		"bar_1=2",
 		"baz-2=3",
+		`baz-3='4'`,
+		`bax-4="5"`,
 	}
 
 	for i := range rows {
@@ -84,6 +86,26 @@ func TestCheckRowsFormatOK(t *testing.T) {
 
 		if !ok {
 			t.Error("input entries are expected to be format compliant")
+		}
+	}
+
+}
+
+func TestCheckRowsFormatNotOK(t *testing.T) {
+	rows := []string{
+		"$'00",
+		"//&66",
+		"foo=[2]",
+	}
+
+	for i := range rows {
+		ok, err := checkRowFormat(rows[i])
+		if err != nil {
+			t.Error(err)
+		}
+
+		if ok {
+			t.Error("input entries should fail")
 		}
 	}
 

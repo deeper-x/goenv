@@ -53,7 +53,7 @@ func New(fpath ...string) (EnvFile, error) {
 func (ef *EnvFile) Get(k string) (string, error) {
 	v := ef.content[k]
 	if v == "" {
-		return "", errors.New("no given value")
+		return "", errors.New("required key not present")
 	}
 
 	return v, nil
